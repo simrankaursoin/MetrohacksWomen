@@ -1,12 +1,11 @@
-<!DOCTYPE HTML>
-
 <html>
+
 	<head>
 		<title>My Meal</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+                <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body class="left-sidebar">
@@ -37,7 +36,6 @@
     <div class="6u 12u(mobile)">
 		<input name="name" placeholder="Name" type="text" required/>
 	</div>
-
 <div class="row">
 						<div class="6u 12u(mobile)">
 								<section>
@@ -71,18 +69,18 @@
   <label for="inputUser" class="col-md-3 control-label">Age </label>
     <input type="text" name="age" type="number" required><br></br>
   <label for="inputUser" class="col-md-3 control-label">Activity Level </label>
-    <select>
-        <option name="0" value="Sedentary">Sedentary (no activity) </option>
-        <option name="1" value="Moderate">Moderate (1-2 times a week) </option>
-        <option name="2" value="Average">Average (3 times a week) </option>
-        <option name="3" value="Above Average">Above Average (4-5 times a week) </option>
-        <option name="4" value="Very Athletic">Very Athletic (almost every day) </option>
+    <select name="activity" >
+        <option value="0">Sedentary (no activity) </option>
+        <option value="1">Moderate (1-2 times a week) </option>
+        <option value="2">Average (3 times a week) </option>
+        <option value="3">Above Average (4-5 times a week) </option>
+        <option value="4">Very Athletic (almost every day) </option>
     </select><br></br>
   <label for="inputExpertise" class="col-md-3 control-label">Cooking Expertise: </label>
-    <select>
-        <option name="1" value="Beginner">Beginner </option>
-        <option name="2" value="Moderate">Moderate </option>
-        <option name="3" value="Advanced">Advanced </option>
+    <select name="expertise">
+        <option value="1">Beginner </option>
+        <option value="2">Moderate </option>
+        <option value="3">Advanced </option>
     </select><br></br>
   <label for="inputGender" class="col-md-3 control-label">Gender: </label>
     <INPUT TYPE="radio" name="gender" value="female"> Female
