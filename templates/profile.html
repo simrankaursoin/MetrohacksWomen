@@ -1,0 +1,49 @@
+
+{% block content %}
+<body>
+<br></br>
+<center><h2> My Profile </h2> </center>
+<form action="/profile" method="POST" class="form-horizontal">
+  <label for="inputFirstName" class="col-md-3 control-label">My Name </label>
+    <input type="text" name="name" required><br></br>
+  <label for="inputUser" class="col-md-3 control-label">Height </label>
+    <input type="text" name="height" type="number" required><br></br>
+  <label for="inputUser" class="col-md-3 control-label">Weight </label>
+    <input type="text" name="weight" type="number" required><br></br>
+  <label for="inputUser" class="col-md-3 control-label">Age </label>
+    <input type="text" name="age" type="number" required><br></br>
+  <label for="inputUser" class="col-md-3 control-label">Activity Level </label>
+    <select>
+        <option name="0" value="Sedentary">Sedentary (no activity) </option>
+        <option name="1" value="Moderate">Moderate (1-2 times a week) </option>
+        <option name="2" value="Average">Average (3 times a week) </option>
+        <option name="3" value="Above Average">Above Average (4-5 times a week) </option>
+        <option name="4" value="Very Athletic">Very Athletic (almost every day) </option>
+    </select><br></br>
+  <label for="inputExpertise" class="col-md-3 control-label">Cooking Expertise: </label>
+    <select>
+        <option name="1" value="Beginner">Beginner </option>
+        <option name="2" value="Moderate">Moderate </option>
+        <option name="3" value="Advanced">Advanced </option>
+    </select><br></br>
+  <label for="inputGender" class="col-md-3 control-label">Gender: </label>
+    <INPUT TYPE="radio" name="gender" value="female"> Female
+    <INPUT TYPE="radio" name="gender" value="male"> Male
+    <INPUT TYPE="radio" name="gender" value="other"> Other <br></br>
+  <label for="inputvegan" class="col-md-3 control-label">Vegan </label>
+    <INPUT TYPE="radio" name="vegan" value="yes"> Yes
+    <INPUT TYPE="radio" name="vegan" value="no"> No<br></br>
+  <label for="inputveg" class="col-md-3 control-label">Vegetarian </label>
+    <INPUT TYPE="radio" name="vegetarian" value="yes"> Yes
+    <INPUT TYPE="radio" name="vegetarian" value="no"> No<br></br>
+  <label for="inputlac" class="col-md-3 control-label">Lactose Intolerant </label>
+    <INPUT TYPE="radio" name="lactose" value="yes"> Yes
+    <INPUT TYPE="radio" name="lactose" value="no"> No<br></br>
+  <label for="inputnut" class="col-md-3 control-label">Nut Allergy </label>
+    <INPUT TYPE="radio" name="nuts" value="yes"> Yes
+    <INPUT TYPE="radio" name="nuts" value="no"> No<br></br>
+<input class="btn btn-info" type="submit" value="Submit">
+</form>
+</body>
+{% endblock %}
+
