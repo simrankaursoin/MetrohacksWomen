@@ -49,21 +49,26 @@ def profile():
             if session["doc"][i] is True:
                 restrictions.append(i)
         session["restrictions"] = restrictions
-        db.users.insert(doc)
+        db.users.insert({"name": name, "age": age, "weight": weight,
+                        "height": height, "activity_level": activity_level,
+                        "cooking_expertise": expertise, "gender": gender, "vegan": vegan,
+                        "vegetarian": vegetarian,
+                        "lactose-intolerant": lactose, "nut_allergy": nuts})
         if session["doc"]["gender"] == "male":
             bmr = (10*session["doc"]["weight"]) + (6.25*session["doc"]["height"]) - (5*session["doc"]["age"]) + 5
         elif session["doc"]["gender"] == "female":
             bmr = (10*session["doc"]["weight"]) + (6.25*session["doc"]["height"]) - (5*session["doc"]["age"]) - 161
+        calories = 1.1*bmr
         if session["doc"]["activity_level"] == 0:
-            session["calories"] = (bmr * 1.1)
+            calories = (bmr * 1.1)
         elif session["doc"]["activity_level"] == 1:
-            session["calories"] = bmr * 1.3
+            calories = bmr * 1.3
         elif session["doc"]["activity_level"] == 2:
-            session["calories"] = bmr * 1.53
+            calories = bmr * 1.53
         elif session["doc"]["activity_level"] == 3:
-            session["calories"] = bmr * 1.7
+            calories = bmr * 1.7
         elif session["doc"]["activity_level"] == 4:
-            session["calories"] = bmr * 1.9
+            calories = bmr * 1.9
         possible_bf = []
         list_len = len(session["restrictions"])-1
         temp = 0
@@ -100,7 +105,7 @@ def profile():
         possible_s = []
         list_len = len(session["restrictions"])-1
         temp = 0
-        for item in db.snack.find():
+        for item in db.snacks.find():
             for restriction in session["restrictions"]:
                 if item[restriction] == True:
                     temp +=1
@@ -121,14 +126,15 @@ def profile():
                 possible_dess.append(item)
         calorie_limit = False
         while not calorie_limit:
-            breakfast = possible_bf[random.randint(0, len(possible_bf)-1)]
-            lunch = possible_l[random.randint(0, len(possible_l)-1)]
-            dinner = possible_d[random.randint(0, len(possible_d)-1)]
-            dessert = possible_dess[random.randint(0, len(possible_dess)-1)]
-            snack = possible_s[random.randint(0, len(possible_s)-1)]
-            if breakfast["calories"] + lunch["calories"] + dinner["calories"] + dessert["calories"] + snack["calories"] <= session["calories"]:
+            breakfast = possible_bf[random.randint(0, 2)]
+            lunch = possible_l[random.randint(0, 2)]
+            dinner = possible_d[random.randint(0,2)]
+            dessert = possible_dess[random.randint(0, 2)]
+            snack = possible_s[random.randint(0,2)]
+            if breakfast["calories"] + lunch["calories"] + dinner["calories"] + dessert["calories"] + snack["calories"] <= calories:
                 meal_plan = {"bf": breakfast["name"], "l":lunch["name"], "s":snack["name"], "d":dinner["name"], "dess":dessert["name"]}
                 links = {"bf": breakfast["url"], "l":lunch["url"], "s":snack["url"], "d":dinner["url"], "dess":dessert["url"]}
+                calorie_limit = True
             else:
                 continue
         return render_template("/meal_plan.html", meal_plan=meal_plan, links=links)
